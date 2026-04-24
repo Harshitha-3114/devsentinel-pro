@@ -25,7 +25,7 @@
 
 //     try {
 //       const res = await axios.post(
-//         "http://localhost:8000/api/agent/run",
+//         `${API_URL}/api/agent/run`,
 //         { feature_request: featureRequest },
 //         { timeout: 180000 }
 //       )
@@ -188,7 +188,7 @@
 
 import { useState } from "react"
 import axios from "axios"
-
+import API_URL from "../config"
 const PIPELINE_STEPS = [
   { id: "architect", label: "Architect", icon: "🏗️" },
   { id: "developer", label: "Developer", icon: "💻" },
@@ -212,7 +212,7 @@ function AgentPipeline() {
     setResult(null)
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/agent/run",
+        `${API_URL}/api/agent/run`,
         { feature_request: featureRequest },
         { timeout: 180000 }
       )

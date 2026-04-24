@@ -19,7 +19,7 @@
 
 //     try {
 //       const res = await axios.post(
-//         "http://localhost:8000/api/architecture-suggest",
+//         `${API_URL}/api/architecture-suggest`,
 //         { description, code, scale }
 //       )
 //       setResult(res.data.result)
@@ -135,6 +135,7 @@
 
 import { useState } from "react"
 import axios from "axios"
+import API_URL from "../config"
 
 const SCALES = ["startup", "mid-size", "enterprise"]
 
@@ -152,7 +153,7 @@ function ArchitectureSuggester() {
     setError("")
     setResult("")
     try {
-      const res = await axios.post("http://localhost:8000/api/architecture-suggest", { description, code, scale })
+      const res = await axios.post(`${API_URL}/api/architecture-suggest`, { description, code, scale })
       setResult(res.data.result)
     } catch {
       setError("Failed to analyze architecture. Please try again.")

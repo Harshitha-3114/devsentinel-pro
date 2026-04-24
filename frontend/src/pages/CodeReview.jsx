@@ -17,7 +17,7 @@
 //     setReview("")
 
 //     try {
-//       const res = await axios.post("http://localhost:8000/api/code-review", {
+//       const res = await axios.post(`${API_URL}/api/code-review`, {
 //         code,
 //         language
 //       })
@@ -110,6 +110,7 @@
 
 import { useState } from "react"
 import axios from "axios"
+import API_URL from "../config"
 
 const LANGUAGES = ["python", "javascript", "typescript", "java", "cpp", "go", "rust"]
 
@@ -126,7 +127,7 @@ function CodeReview() {
     setError("")
     setReview("")
     try {
-      const res = await axios.post("http://localhost:8000/api/code-review", { code, language })
+      const res = await axios.post(`${API_URL}/api/code-review`, { code, language })
       setReview(res.data.review)
     } catch {
       setError("Failed to review code. Please try again.")

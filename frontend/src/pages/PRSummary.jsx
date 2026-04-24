@@ -16,7 +16,7 @@
 //     setSummary("")
 
 //     try {
-//       const res = await axios.post("http://localhost:8000/api/pr-summary", {
+//       const res = await axios.post(`${API_URL}/api/pr-summary`, {
 //         pr_url: prUrl,
 //         token: token
 //       })
@@ -89,6 +89,7 @@
 
 import { useState } from "react"
 import axios from "axios"
+import API_URL from "../config"
 
 function PRSummary() {
   const [prUrl, setPrUrl] = useState("")
@@ -103,7 +104,7 @@ function PRSummary() {
     setError("")
     setSummary("")
     try {
-      const res = await axios.post("http://localhost:8000/api/pr-summary", {
+      const res = await axios.post(`${API_URL}/api/pr-summary`, {
         pr_url: prUrl, token
       })
       setSummary(res.data.summary)

@@ -19,7 +19,7 @@
 
 //     try {
 //       const res = await axios.post(
-//         "http://localhost:8000/api/generate-tests",
+//         `${API_URL}/api/generate-tests`,
 //         { code, language }
 //       )
 //       setResult(res.data.result)
@@ -131,6 +131,7 @@
 
 import { useState } from "react"
 import axios from "axios"
+import API_URL from "../config"
 
 const LANGUAGES = ["python", "javascript", "typescript", "java", "go"]
 
@@ -148,7 +149,7 @@ function TestGenerator() {
     setError("")
     setResult("")
     try {
-      const res = await axios.post("http://localhost:8000/api/generate-tests", { code, language })
+      const res = await axios.post(`${API_URL}/api/generate-tests`, { code, language })
       setResult(res.data.result)
     } catch {
       setError("Failed to generate tests. Please try again.")
