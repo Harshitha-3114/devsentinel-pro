@@ -5,7 +5,6 @@ import os
 
 app = FastAPI()
 
-# Get frontend URL from environment variable
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 app.add_middleware(
@@ -13,6 +12,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://devsentinel-pro.vercel.app",
         FRONTEND_URL
     ],
     allow_credentials=True,
