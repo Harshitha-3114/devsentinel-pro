@@ -9,7 +9,8 @@ import TestGenerator from "./pages/TestGenerator"
 import ArchitectureSuggester from "./pages/ArchitectureSuggester"
 import AgentPipeline from "./pages/AgentPipeline"
 import Layout from "./components/Layout"
-
+import ClosedLoopImpact from "./pages/ClosedLoopImpact"
+import ArchitectureDecisions from "./pages/ArchitectureDecisions"
 const NO_SIDEBAR_ROUTES = ["/", "/auth/success"]
 
 function AppContent() {
@@ -21,6 +22,8 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/auth/success" element={<AuthSuccess />} />
+        <Route path="/closed-loop-impact" element={<ClosedLoopImpact />} />
+<Route path="/architecture-decisions" element={<ArchitectureDecisions />} />
       </Routes>
     )
   }
