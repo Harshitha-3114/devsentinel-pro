@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, pr_summary, code_review, vulnerability_scanner, test_generator, architecture_suggester, agent_pipeline
+from routers import auth, pr_summary, code_review, vulnerability_scanner, test_generator, architecture_suggester, agent_pipeline, research
+
+
 import os
 
 app = FastAPI()
@@ -27,6 +29,7 @@ app.include_router(vulnerability_scanner.router)
 app.include_router(test_generator.router)
 app.include_router(architecture_suggester.router)
 app.include_router(agent_pipeline.router)
+app.include_router(research.router)
 
 @app.get("/")
 def root():

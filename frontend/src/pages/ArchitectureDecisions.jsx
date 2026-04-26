@@ -1,4 +1,8 @@
+import { useState } from "react"
+
 function ArchitectureDecisions() {
+  const [expanded, setExpanded] = useState(null)
+
   const decisions = [
     {
       id: "ADR-001",
@@ -9,32 +13,31 @@ function ArchitectureDecisions() {
           name: "LangChain Chains",
           verdict: "Rejected",
           pros: ["Simple API", "Well documented", "Large community"],
-          cons: ["Linear only", "No cycles support", "No shared state between steps"],
+          cons: ["Linear only", "No cycles support", "No shared state"],
           verdict_reason: "Cannot create feedback cycles — fundamentally incompatible with closed loop architecture"
         },
         {
           name: "AutoGen (Microsoft)",
           verdict: "Rejected",
           pros: ["Multi-agent support", "Conversational agents"],
-          cons: ["Designed for conversation not pipelines", "Unpredictable flow", "Hard to control state"],
-          verdict_reason: "Conversational model doesn't suit structured deterministic pipelines"
+          cons: ["Designed for conversation not pipelines", "Unpredictable flow"],
+          verdict_reason: "Conversational model does not suit structured deterministic pipelines"
         },
         {
           name: "LangGraph",
           verdict: "Chosen",
-          pros: ["Graph-based — supports cycles", "Explicit typed state", "Deterministic flow", "Built for agent pipelines"],
+          pros: ["Graph-based — supports cycles", "Explicit typed state", "Deterministic flow"],
           cons: ["Steeper learning curve", "Less documentation"],
           verdict_reason: "Only framework that natively supports cyclic graphs needed for closed loop feedback"
         },
       ],
       code_evidence: `# LangGraph enables this — LangChain cannot:
 graph = StateGraph(AgentState)
-graph.add_edge("tester", "vulnerability_scan")    # forward
-graph.add_edge("vulnerability_scan", "code_review") # forward  
-graph.add_edge("code_review", "reviewer")          # feedback loop
-# Reviewer reads BOTH scan reports and fixes issues
+graph.add_edge("tester", "vulnerability_scan")
+graph.add_edge("vulnerability_scan", "code_review")
+graph.add_edge("code_review", "reviewer")
 # This cycle is IMPOSSIBLE in LangChain`,
-      insight: "LangGraph was the only viable option. The closed loop feedback cycle — the core innovation of DevSentinel Pro — is architecturally impossible without graph-based agent orchestration."
+      insight: "LangGraph was the only viable option. The closed loop feedback cycle is architecturally impossible without graph-based agent orchestration."
     },
     {
       id: "ADR-002",
@@ -45,38 +48,34 @@ graph.add_edge("code_review", "reviewer")          # feedback loop
           name: "OpenAI GPT-4",
           verdict: "Rejected",
           pros: ["Highest quality", "Best reasoning", "Most popular"],
-          cons: ["$0.03/1k tokens", "8-12s response time", "Rate limits on free tier"],
-          verdict_reason: "Too expensive for student project, too slow for real-time UX"
+          cons: ["$0.03/1k tokens", "8-12s response time", "Rate limits"],
+          verdict_reason: "Too expensive, too slow for 6-agent sequential pipeline"
         },
         {
           name: "Google Gemini Pro",
           verdict: "Rejected",
-          pros: ["Free tier", "Good quality", "Google ecosystem"],
-          cons: ["5-8s response time", "API quota limits", "Less reliable"],
-          verdict_reason: "Response time still too slow for agent pipeline (6 sequential calls)"
+          pros: ["Free tier", "Good quality"],
+          cons: ["5-8s response time", "API quota limits"],
+          verdict_reason: "Response time still too slow for agent pipeline"
         },
         {
           name: "Groq + LLaMA 3.3 70B",
           verdict: "Chosen",
-          pros: ["1-3s response time", "Free tier", "LPU hardware", "Open source model"],
-          cons: ["Rate limits on free tier", "Fewer models available"],
-          verdict_reason: "10x faster than alternatives due to custom LPU hardware — critical for 6-agent pipeline"
+          pros: ["1-3s response time", "Free tier", "LPU hardware", "Open source"],
+          cons: ["Rate limits on free tier", "Fewer models"],
+          verdict_reason: "10x faster than alternatives due to custom LPU hardware"
         },
       ],
-      code_evidence: `# Groq LPU vs GPU inference comparison:
-# OpenAI (GPU): 8-12 seconds per call
-# Groq (LPU):   1-3 seconds per call
-
-# For 6-agent closed loop pipeline:
+      code_evidence: `# Speed comparison for 6-agent pipeline:
 # OpenAI: 6 x 10s = 60-90 seconds total
 # Groq:   6 x 2s  = 10-15 seconds total
-
 # 6x faster pipeline = dramatically better UX
+
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 response = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",  # 70B params, 1-3s response
+    model="llama-3.3-70b-versatile",
 )`,
-      insight: "Groq's custom Language Processing Unit (LPU) hardware delivers inference speeds that are fundamentally impossible on GPU-based providers. For a 6-step agent pipeline, this 6x speed advantage is the difference between a usable product and an unusable one."
+      insight: "Groq's custom LPU hardware delivers inference speeds impossible on GPU-based providers. For a 6-step agent pipeline, this 6x speed advantage is the difference between a usable and unusable product."
     },
     {
       id: "ADR-003",
@@ -86,39 +85,38 @@ response = client.chat.completions.create(
         {
           name: "Generate Only",
           verdict: "Rejected",
-          pros: ["Simple", "Fast", "Easy to implement"],
-          cons: ["No security validation", "Vulnerabilities pass through", "Not production ready"],
-          verdict_reason: "Industry research shows LLM-generated code contains vulnerabilities in 40% of cases"
+          pros: ["Simple", "Fast"],
+          cons: ["No security validation", "Vulnerabilities pass through"],
+          verdict_reason: "LLM-generated code contains vulnerabilities in ~40% of cases"
         },
         {
           name: "Generate + Human Review",
           verdict: "Rejected",
           pros: ["High quality", "Human judgment"],
-          cons: ["Defeats automation purpose", "Slow", "Expensive", "Not scalable"],
-          verdict_reason: "Requires human in the loop — eliminates the value of AI automation"
+          cons: ["Defeats automation purpose", "Slow", "Not scalable"],
+          verdict_reason: "Requires human in the loop — eliminates value of AI automation"
         },
         {
           name: "Closed Loop Pipeline",
           verdict: "Chosen",
-          pros: ["Automated security validation", "Self-correcting", "No human needed", "Measurably better output"],
+          pros: ["Automated security validation", "Self-correcting", "No human needed"],
           cons: ["Complex implementation", "Longer pipeline time"],
           verdict_reason: "Inspired by control theory feedback loops — system detects and corrects its own errors"
         },
       ],
-      code_evidence: `# Closed Loop Graph — the key architectural innovation:
+      code_evidence: `# Closed Loop — the key architectural innovation:
 graph.add_edge("developer", "tester")
-graph.add_edge("tester", "vulnerability_scan")   # DevSentinel scans
-graph.add_edge("vulnerability_scan", "code_review") # DevSentinel reviews  
-graph.add_edge("code_review", "reviewer")        # Reviewer reads BOTH reports
+graph.add_edge("tester", "vulnerability_scan")
+graph.add_edge("vulnerability_scan", "code_review")
+graph.add_edge("code_review", "reviewer")
 
-# Reviewer Agent prompt includes scan reports:
+# Reviewer reads BOTH DevSentinel reports:
 f"""
-Generated Code: {state['code']}
-Vulnerability Report: {state['vulnerability_report']}  # ← closed loop input
-Code Review Report: {state['code_review_report']}      # ← closed loop input
+Vulnerability Report: {state['vulnerability_report']}
+Code Review Report: {state['code_review_report']}
 Fix ALL issues found above.
 """`,
-      insight: "The closed loop architecture is inspired by control theory — specifically PID feedback controllers that measure output error and correct the input. Applied to AI code generation: measure security errors (DevSentinel), feed back to generation layer (Reviewer Agent), correct the output. This creates a self-improving system that produces measurably more secure code."
+      insight: "The closed loop is inspired by control theory PID feedback controllers. Measure output error (DevSentinel), feed back to generation layer (Reviewer Agent), correct the output. Self-improving system."
     },
     {
       id: "ADR-004",
@@ -129,22 +127,22 @@ Fix ALL issues found above.
           name: "Plain Python dict",
           verdict: "Rejected",
           pros: ["Simple", "Flexible"],
-          cons: ["No type safety", "Runtime errors", "Hard to document", "No IDE support"],
+          cons: ["No type safety", "Runtime errors", "Hard to document"],
           verdict_reason: "Silent errors when agents write wrong types crash the entire pipeline"
         },
         {
           name: "Pydantic Model",
           verdict: "Rejected",
           pros: ["Strong validation", "Serializable"],
-          cons: ["LangGraph requires TypedDict", "Overhead", "Incompatible with graph state"],
-          verdict_reason: "LangGraph's StateGraph is designed specifically for TypedDict"
+          cons: ["LangGraph requires TypedDict", "Incompatible with graph state"],
+          verdict_reason: "LangGraph StateGraph is designed specifically for TypedDict"
         },
         {
           name: "TypedDict",
           verdict: "Chosen",
           pros: ["Type safety", "LangGraph native", "Self-documenting", "IDE autocomplete"],
           cons: ["Python 3.8+ only"],
-          verdict_reason: "LangGraph's recommended pattern — provides type safety with zero overhead"
+          verdict_reason: "LangGraph recommended pattern — type safety with zero overhead"
         },
       ],
       code_evidence: `# TypedDict enforces schema across all 6 agents:
@@ -156,16 +154,10 @@ class AgentState(TypedDict):
     vulnerability_report: str # Written by DevSentinel Scanner
     code_review_report: str   # Written by DevSentinel Reviewer
     final_code: str           # Written by Reviewer Agent
-    final_output: str         # Compiled final output
-
-# Each agent reads only what it needs
-# Each agent writes only its own field
-# Type errors caught at development time not runtime`,
-      insight: "TypedDict makes the state contract between agents explicit and verifiable. This is a software engineering principle called 'making illegal states unrepresentable' — the schema documents exactly what data flows between agents and prevents silent data corruption."
+    final_output: str         # Compiled final output`,
+      insight: "TypedDict makes the state contract between agents explicit. This is the principle of 'making illegal states unrepresentable' — the schema documents exactly what data flows between agents."
     },
   ]
-
-  const [expanded, setExpanded] = useState(null)
 
   return (
     <div className="text-black">
@@ -182,7 +174,6 @@ class AgentState(TypedDict):
       <div className="max-w-4xl space-y-4">
         {decisions.map((adr, i) => (
           <div key={i} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
-            {/* Header */}
             <button
               onClick={() => setExpanded(expanded === i ? null : i)}
               className="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition"
@@ -200,14 +191,12 @@ class AgentState(TypedDict):
 
             {expanded === i && (
               <div className="px-6 pb-6 border-t border-gray-100">
-                {/* Context */}
                 <div className="mt-4 mb-6">
                   <p className="text-gray-500 text-sm">
                     <strong>Context:</strong> {adr.context}
                   </p>
                 </div>
 
-                {/* Options Comparison */}
                 <h4 className="font-bold mb-3 text-sm text-gray-500 uppercase tracking-wider">
                   Options Evaluated
                 </h4>
@@ -266,7 +255,6 @@ class AgentState(TypedDict):
                   ))}
                 </div>
 
-                {/* Code Evidence */}
                 <h4 className="font-bold mb-3 text-sm text-gray-500 uppercase tracking-wider">
                   Code Evidence
                 </h4>
@@ -274,7 +262,6 @@ class AgentState(TypedDict):
                   {adr.code_evidence}
                 </pre>
 
-                {/* Insight */}
                 <div className="bg-black text-white rounded-xl p-4 flex items-start gap-3">
                   <span className="text-xl mt-0.5">💡</span>
                   <div>

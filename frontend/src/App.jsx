@@ -8,9 +8,11 @@ import VulnerabilityScanner from "./pages/VulnerabilityScanner"
 import TestGenerator from "./pages/TestGenerator"
 import ArchitectureSuggester from "./pages/ArchitectureSuggester"
 import AgentPipeline from "./pages/AgentPipeline"
-import Layout from "./components/Layout"
+import Research from "./pages/Research"
 import ClosedLoopImpact from "./pages/ClosedLoopImpact"
 import ArchitectureDecisions from "./pages/ArchitectureDecisions"
+import Layout from "./components/Layout"
+
 const NO_SIDEBAR_ROUTES = ["/", "/auth/success"]
 
 function AppContent() {
@@ -22,8 +24,6 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/auth/success" element={<AuthSuccess />} />
-        <Route path="/closed-loop-impact" element={<ClosedLoopImpact />} />
-<Route path="/architecture-decisions" element={<ArchitectureDecisions />} />
       </Routes>
     )
   }
@@ -38,6 +38,9 @@ function AppContent() {
         <Route path="/test-generator" element={<TestGenerator />} />
         <Route path="/architecture" element={<ArchitectureSuggester />} />
         <Route path="/agent-pipeline" element={<AgentPipeline />} />
+        <Route path="/research" element={<Research />} />
+        <Route path="/closed-loop-impact" element={<ClosedLoopImpact />} />
+        <Route path="/architecture-decisions" element={<ArchitectureDecisions />} />
       </Routes>
     </Layout>
   )
