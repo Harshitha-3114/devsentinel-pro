@@ -3,9 +3,9 @@ import axios from "axios"
 import API_URL from "../config"
 
 const MODELS = [
-  { name: "LLaMA 3.3 70B", description: "Meta's largest open model — best quality", tag: "Chosen Model" },
-  { name: "LLaMA 3.1 8B", description: "Lightweight fast model", tag: "Baseline" },
-  { name: "Mixtral 8x7B", description: "Mixture of experts", tag: "Alternative" },
+  { id: "llama-3.3-70b-versatile", name: "LLaMA 3.3 70B", description: "Meta's largest open model — best quality", tag: "Chosen Model" },
+  { id: "llama-3.1-8b-instant", name: "LLaMA 3.1 8B", description: "Lightweight fast model", tag: "Baseline" },
+  { id: "mixtral-8x7b-32768", name: "Mixtral 8x7B", description: "Mixture of experts", tag: "Alternative" },
 ]
 
 function Research() {
@@ -50,10 +50,15 @@ password = "admin123"`)
     }
   }
 
+  const tabs = [
+    { id: "benchmark", label: "LLM Benchmark" },
+    { id: "prompt", label: "Prompt Engineering" },
+  ]
+
   return (
     <div className="text-black">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">LLM Benchmark</h1>
+        <h1 className="text-4xl font-bold mb-2">Research and Insights</h1>
         <p className="text-gray-500 text-lg">
           Live experiments comparing LLM models and prompting strategies
         </p>
@@ -62,12 +67,9 @@ password = "admin123"`)
         </div>
       </div>
 
-      {/* Section Tabs */}
+      {/* Tabs */}
       <div className="flex gap-3 mb-8 border-b border-gray-200 pb-4">
-        {[
-          { id: "benchmark", label: "🏆 LLM Model Comparison" },
-          { id: "prompt", label: "🧪 Prompt Engineering" },
-        ].map(tab => (
+        {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveSection(tab.id)}
@@ -95,7 +97,7 @@ password = "admin123"`)
         />
       </div>
 
-      {/* LLM Benchmark Section */}
+      {/* LLM Benchmark */}
       {activeSection === "benchmark" && (
         <div className="max-w-4xl">
           <div className="mb-6">
@@ -129,7 +131,7 @@ password = "admin123"`)
               disabled={loadingBenchmark}
               className="bg-black hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg transition disabled:opacity-50"
             >
-              {loadingBenchmark ? "Running Benchmark..." : "▶ Run Live Benchmark"}
+              {loadingBenchmark ? "Running Benchmark..." : "Run Live Benchmark"}
             </button>
             {loadingBenchmark && (
               <p className="text-gray-400 text-sm mt-2">
@@ -175,7 +177,7 @@ password = "admin123"`)
                     </div>
                     <div className="border-t border-gray-100 pt-3 mt-3">
                       <p className="text-xs text-gray-600 leading-relaxed">
-                        {result.response?.substring(0, 200)}...
+                        {result.response?.substring(0, 150)}...
                       </p>
                     </div>
                   </div>
@@ -183,7 +185,7 @@ password = "admin123"`)
               </div>
 
               <div className="bg-white border border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold mb-4">Detailed Comparison Table</h3>
+                <h3 className="font-bold mb-4">Comparison Table</h3>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-gray-200">
@@ -210,7 +212,7 @@ password = "admin123"`)
         </div>
       )}
 
-      {/* Prompt Engineering Section */}
+      {/* Prompt Engineering */}
       {activeSection === "prompt" && (
         <div className="max-w-4xl">
           <div className="mb-6">
@@ -224,8 +226,8 @@ password = "admin123"`)
             <h3 className="font-bold mb-3">3 Prompting Strategies Compared</h3>
             <div className="space-y-3 mb-4">
               {[
-                { name: "Basic", desc: "Simple instruction — 'Review this code'", score: "3/10" },
-                { name: "Role", desc: "Assign expert role — 'You are a senior engineer'", score: "6/10" },
+                { name: "Basic", desc: "Simple instruction — Review this code", score: "3/10" },
+                { name: "Role", desc: "Assign expert role — You are a senior engineer", score: "6/10" },
                 { name: "Structured", desc: "Your approach — OWASP mapping + severity levels", score: "9/10" },
               ].map((p, i) => (
                 <div key={i} className="flex items-center justify-between border border-gray-200 rounded-lg p-3">
@@ -244,7 +246,7 @@ password = "admin123"`)
               disabled={loadingPrompt}
               className="bg-black hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg transition disabled:opacity-50"
             >
-              {loadingPrompt ? "Running Comparison..." : "▶ Run Live Comparison"}
+              {loadingPrompt ? "Running Comparison..." : "Run Live Comparison"}
             </button>
             {loadingPrompt && (
               <p className="text-gray-400 text-sm mt-2">
@@ -259,3 +261,61 @@ password = "admin123"`)
                 <span className="text-2xl">💡</span>
                 <div>
                   <p className="font-bold">Research Insight</p>
+                  <p className="text-gray-300 text-sm">{promptResult.insight}</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {promptResult.results.map((result, i) => (
+                  <div
+                    key={i}
+                    className={`border rounded-xl p-6 ${
+                      result.prompt_id === "structured"
+                        ? "border-black bg-gray-50"
+                        : "border-gray-200 bg-white"
+                    }`}
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h3 className="font-bold">{result.prompt_name}</h3>
+                        <p className="text-gray-400 text-sm">{result.description}</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold">{result.quality_score}/10</div>
+                        <div className="text-gray-400 text-xs">Quality Score</div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 mb-3">
+                      {[
+                        { label: "Structured", val: result.metrics?.has_structure },
+                        { label: "Severity Levels", val: result.metrics?.has_severity },
+                        { label: "OWASP Mapped", val: result.metrics?.has_owasp },
+                      ].map((m, j) => (
+                        <div key={j} className="flex items-center gap-1 text-xs">
+                          <span>{m.val ? "✅" : "❌"}</span>
+                          <span className="text-gray-500">{m.label}</span>
+                        </div>
+                      ))}
+                      <div className="text-xs text-gray-400">
+                        {result.metrics?.word_count} words
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                      <p className="text-xs text-gray-600 leading-relaxed font-mono">
+                        {result.response?.substring(0, 300)}...
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Research
