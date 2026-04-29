@@ -58,7 +58,7 @@ function ClosedLoopImpact() {
             </p>
           </div>
           <div className="bg-black text-white rounded-lg p-4">
-            <h3 className="font-medium text-sm mb-2 text-gray-300">WITH Closed Loop</h3>
+            <h3 className="font-medium text-sm mb-2 text-gray-700">WITH Closed Loop</h3>
             <p className="text-sm text-gray-300">
               Developer Agent generates — DevSentinel scans —
               Reviewer Agent fixes — secure output delivered
@@ -69,7 +69,7 @@ function ClosedLoopImpact() {
 
       {/* Input */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl mb-6">
-        <label className="text-gray-800 text-sm mb-2 block font-medium">
+        <label className="text-gray-600 text-sm mb-2 block font-medium">
           Feature Request
         </label>
         <textarea
@@ -145,13 +145,13 @@ function ClosedLoopImpact() {
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-800 text-sm">Quality Score</span>
+                  <span className="text-gray-500 text-sm">Quality Score</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.quality_score}/10
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-800 text-sm">Vulnerabilities</span>
+                  <span className="text-gray-500 text-sm">Vulnerabilities</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.vulnerability_count} found
                   </span>
