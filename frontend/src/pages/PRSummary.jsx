@@ -35,11 +35,11 @@ function PRSummary() {
   return (
     <div className="min-h-screen bg-gray-50 text-black p-8">
       <h1 className="text-3xl font-bold mb-2">PR Summary</h1>
-      <p className="text-gray-1000 mb-8">Get an AI-powered summary of your pull requests</p>
+      <p className="text-gray-700 mb-8">Get an AI-powered summary of your pull requests</p>
 
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl">
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">Pull Request URL</label>
+          <label className="text-gray-700 text-sm mb-2 block">Pull Request URL</label>
           <input
             type="text"
             placeholder="https://github.com/owner/repo/pull/123"

@@ -30,11 +30,11 @@ function ArchitectureSuggester() {
   return (
     <div className="min-h-screen bg-gray-50 text-black p-8">
       <h1 className="text-3xl font-bold mb-2">Architecture Suggester</h1>
-      <p className="text-gray-1000 mb-8">Describe your system and get expert architecture recommendations</p>
+      <p className="text-gray-700 mb-8">Describe your system and get expert architecture recommendations</p>
 
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl">
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">Target Scale</label>
+          <label className="text-gray-700 text-sm mb-2 block">Target Scale</label>
           <div className="flex gap-3">
             {SCALES.map(s => (
               <button
@@ -43,7 +43,7 @@ function ArchitectureSuggester() {
                 className={`px-4 py-2 rounded-lg capitalize font-medium transition border ${
                   scale === s
                     ? "bg-black text-white border-black"
-                    : "bg-white text-gray-1000 border-gray-200 hover:border-black hover:text-black"
+                    : "bg-white text-gray-700 border-gray-200 hover:border-black hover:text-black"
                 }`}
               >
                 {s}
@@ -53,7 +53,7 @@ function ArchitectureSuggester() {
         </div>
 
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">
+          <label className="text-gray-700 text-sm mb-2 block">
             System Description <span className="text-red-400">*</span>
           </label>
           <textarea
@@ -66,8 +66,8 @@ function ArchitectureSuggester() {
         </div>
 
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">
-            Code Sample <span className="text-gray-1000">(optional)</span>
+          <label className="text-gray-700 text-sm mb-2 block">
+            Code Sample <span className="text-gray-700">(optional)</span>
           </label>
           <textarea
             value={code}
@@ -94,7 +94,7 @@ function ArchitectureSuggester() {
       {result && (
         <div className="mt-6 bg-white border border-gray-200 rounded-xl p-6 max-w-4xl">
           <h2 className="text-xl font-bold mb-4 text-black">Architecture Report</h2>
-          <pre className="whitespace-pre-wrap text-gray-1000 leading-relaxed font-sans">{result}</pre>
+          <pre className="whitespace-pre-wrap text-gray-700 leading-relaxed font-sans">{result}</pre>
         </div>
       )}
     </div>

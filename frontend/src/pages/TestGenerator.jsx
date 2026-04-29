@@ -36,11 +36,11 @@ function TestGenerator() {
   return (
     <div className="min-h-screen bg-gray-50 text-black p-8">
       <h1 className="text-3xl font-bold mb-2">Test Generator</h1>
-      <p className="text-gray-1000 mb-8">Paste your code and get complete ready-to-run test cases instantly</p>
+      <p className="text-gray-700 mb-8">Paste your code and get complete ready-to-run test cases instantly</p>
 
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl">
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">Language</label>
+          <label className="text-gray-700 text-sm mb-2 block">Language</label>
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -53,13 +53,13 @@ function TestGenerator() {
         </div>
 
         <div className="mb-4">
-          <label className="text-gray-1000 text-sm mb-2 block">Your Code</label>
+          <label className="text-gray-700 text-sm mb-2 block">Your Code</label>
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder="Paste your function or module here..."
             rows={12}
-            className="w-full bg-gray-50 text-gray-1000 font-mono text-sm border border-gray-200 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-black resize-none"
+            className="w-full bg-gray-50 text-gray-700 font-mono text-sm border border-gray-200 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-black resize-none"
           />
         </div>
 
@@ -88,7 +88,7 @@ function TestGenerator() {
             </button>
           </div>
           <div className="bg-white border border-gray-200 rounded-xl p-6">
-            <pre className="whitespace-pre-wrap text-gray-1000 leading-relaxed font-sans">{result}</pre>
+            <pre className="whitespace-pre-wrap text-gray-700 leading-relaxed font-sans">{result}</pre>
           </div>
         </div>
       )}

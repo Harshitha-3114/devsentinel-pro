@@ -157,7 +157,7 @@ function ClosedLoopImpact() {
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-800 text-sm">Production Ready</span>
+                  <span className="text-gray-300 text-sm">Production Ready</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.production_ready}
                   </span>
@@ -178,25 +178,25 @@ function ClosedLoopImpact() {
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-800 text-sm">Quality Score</span>
+                  <span className="text-gray-300 text-sm">Quality Score</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.quality_score}/10
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-800 text-sm">Vulnerabilities</span>
+                  <span className="text-gray-300 text-sm">Vulnerabilities</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.vulnerability_count} remaining
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-800 text-sm">Production Ready</span>
+                  <span className="text-gray-300 text-sm">Production Ready</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.production_ready}
                   </span>
                 </div>
                 <div className="py-2">
-                  <span className="text-gray-800 text-sm block mb-1">Remaining Issues</span>
+                  <span className="text-gray-300 text-sm block mb-1">Remaining Issues</span>
                   <span className="text-green-400 text-xs">
                     {result.with_closed_loop.issues}
                   </span>

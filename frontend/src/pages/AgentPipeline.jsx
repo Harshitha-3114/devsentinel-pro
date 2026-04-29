@@ -49,7 +49,7 @@ function AgentPipeline() {
   return (
     <div className="min-h-screen bg-gray-50 text-black p-8">
       <h1 className="text-3xl font-bold mb-2">Closed Loop AI Dev Team</h1>
-      <p className="text-gray-1000 mb-8">
+      <p className="text-gray-700 mb-8">
         4 agents build your feature — DevSentinel scans it — Reviewer fixes it automatically
       </p>
 
@@ -60,27 +60,27 @@ function AgentPipeline() {
             <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition ${
               result
                 ? "border-black bg-black text-white"
-                : "border-gray-200 bg-white text-gray-1000"
+                : "border-gray-200 bg-white text-gray-700"
             }`}>
               <span>{step.icon}</span>
               <span className="font-medium whitespace-nowrap">{step.label}</span>
               {result && <span className="text-xs">✓</span>}
             </div>
             {index < PIPELINE_STEPS.length - 1 && (
-              <span className="text-gray-1000 text-lg">→</span>
+              <span className="text-gray-700 text-lg">→</span>
             )}
           </div>
         ))}
       </div>
 
       {/* Closed Loop Badge */}
-      <div className="mb-6 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg text-sm text-gray-1000">
+      <div className="mb-6 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg text-sm text-gray-700">
         🔄 DevSentinel Closed Loop Active — Generated code is automatically scanned and reviewed
       </div>
 
       {/* Input */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl mb-6">
-        <label className="text-gray-1000 text-sm mb-2 block">Feature Request</label>
+        <label className="text-gray-700 text-sm mb-2 block">Feature Request</label>
         <textarea
           value={featureRequest}
           onChange={(e) => setFeatureRequest(e.target.value)}
@@ -99,8 +99,8 @@ function AgentPipeline() {
         </button>
         {loading && (
           <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <p className="text-gray-1000 text-sm font-medium mb-1">⏳ Please wait 60-90 seconds</p>
-            <p className="text-gray-1000 text-xs">Architect → Developer → Tester → Vuln Scan → Code Review → Fix</p>
+            <p className="text-gray-700 text-sm font-medium mb-1">⏳ Please wait 60-90 seconds</p>
+            <p className="text-gray-700 text-xs">Architect → Developer → Tester → Vuln Scan → Code Review → Fix</p>
           </div>
         )}
       </div>
@@ -115,7 +115,7 @@ function AgentPipeline() {
             <span className="text-2xl">🎉</span>
             <div>
               <p className="text-black font-bold">Closed Loop Complete!</p>
-              <p className="text-gray-1000 text-sm">Code was built, scanned, reviewed and fixed automatically</p>
+              <p className="text-gray-700 text-sm">Code was built, scanned, reviewed and fixed automatically</p>
             </div>
           </div>
 
@@ -127,7 +127,7 @@ function AgentPipeline() {
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition border ${
                   activeTab === tab.id
                     ? "bg-black text-white border-black"
-                    : "bg-white text-gray-1000 border-gray-200 hover:border-black hover:text-black"
+                    : "bg-white text-gray-700 border-gray-200 hover:border-black hover:text-black"
                 }`}
               >
                 {tab.label}
@@ -136,7 +136,7 @@ function AgentPipeline() {
           </div>
 
           <div className="bg-white border border-gray-200 rounded-xl p-6">
-            <pre className="whitespace-pre-wrap text-gray-1000 leading-relaxed font-sans text-sm">
+            <pre className="whitespace-pre-wrap text-gray-700 leading-relaxed font-sans text-sm">
               {result[activeTab]}
             </pre>
           </div>
