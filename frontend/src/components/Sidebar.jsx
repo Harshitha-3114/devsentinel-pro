@@ -37,7 +37,7 @@ function Sidebar() {
     <div className="w-64 min-h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0">
       <div className="p-6 border-b border-gray-200">
         <h1 className="text-xl font-bold text-black">DevSentinel Pro</h1>
-        <p className="text-gray-400 text-xs mt-1">AI DevSecOps Platform</p>
+        <p className="text-gray-900 text-xs mt-1">AI DevSecOps Platform</p>
       </div>
 
       <nav className="flex-1 p-4 overflow-y-auto">
@@ -46,7 +46,7 @@ function Sidebar() {
           className={`flex items-center gap-3 px-3 py-2 rounded-lg mb-4 transition ${
             isActive("/dashboard")
               ? "bg-black text-white"
-              : "text-gray-600 hover:bg-gray-100 hover:text-black"
+              : "text-gray-900 hover:bg-gray-100 hover:text-black"
           }`}
         >
           <LayoutDashboard size={16} />
@@ -55,7 +55,7 @@ function Sidebar() {
 
         {/* Analyze */}
         <div className="mb-4">
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
+          <p className="text-gray-900 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
             Analyze
           </p>
           <div className="space-y-1">
@@ -66,7 +66,7 @@ function Sidebar() {
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
                   isActive(link.path)
                     ? "bg-black text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                    : "text-gray-900 hover:bg-gray-100 hover:text-black"
                 }`}
               >
                 {link.icon}
@@ -78,7 +78,7 @@ function Sidebar() {
 
         {/* Build */}
         <div className="mb-4">
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
+          <p className="text-gray-900 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
             Build
           </p>
           <div className="space-y-1">
@@ -89,7 +89,7 @@ function Sidebar() {
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
                   isActive(link.path)
                     ? "bg-black text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                    : "text-gray-900 hover:bg-gray-100 hover:text-black"
                 }`}
               >
                 {link.icon}
@@ -101,7 +101,7 @@ function Sidebar() {
 
         {/* Research */}
         <div className="mb-4">
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
+          <p className="text-gray-900 text-xs font-semibold uppercase tracking-wider px-3 mb-2">
             Research
           </p>
           <div className="space-y-1">
@@ -112,7 +112,7 @@ function Sidebar() {
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
                   isActive(link.path)
                     ? "bg-black text-white"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-black"
+                    : "text-gray-900 hover:bg-gray-100 hover:text-black"
                 }`}
               >
                 {link.icon}
@@ -130,7 +130,7 @@ function Sidebar() {
           </div>
           <div>
             <p className="text-black text-sm font-medium">GitHub User</p>
-            <p className="text-gray-400 text-xs">Connected ✓</p>
+            <p className="text-gray-900 text-xs">Connected ✓</p>
           </div>
         </div>
       </div>
