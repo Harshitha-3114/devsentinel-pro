@@ -33,10 +33,10 @@ function ClosedLoopImpact() {
     <div className="text-black">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Closed Loop Impact Analysis</h1>
-        <p className="text-gray-500 text-lg">
+        <p className="text-gray-800 text-lg">
           Live experiment proving closed loop improves code security
         </p>
-        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-600">
+        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-800">
           🔬 Research Experiment — Run live and see real results
         </div>
       </div>
@@ -44,15 +44,15 @@ function ClosedLoopImpact() {
       {/* Hypothesis */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl mb-6">
         <h2 className="font-bold text-lg mb-3">Research Hypothesis</h2>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-800 mb-4">
           AI-generated code contains security vulnerabilities. A closed loop system
           that automatically scans and fixes generated code produces more secure,
           production-ready output than direct generation alone.
         </p>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-medium text-sm mb-2 text-gray-500">WITHOUT Closed Loop</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-medium text-sm mb-2 text-gray-800">WITHOUT Closed Loop</h3>
+            <p className="text-sm text-gray-800">
               Developer Agent generates code — directly output to user —
               vulnerabilities remain undetected
             </p>
@@ -69,7 +69,7 @@ function ClosedLoopImpact() {
 
       {/* Input */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl mb-6">
-        <label className="text-gray-500 text-sm mb-2 block font-medium">
+        <label className="text-gray-800 text-sm mb-2 block font-medium">
           Feature Request
         </label>
         <textarea
@@ -87,10 +87,10 @@ function ClosedLoopImpact() {
         </button>
         {loading && (
           <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <p className="text-gray-600 text-sm font-medium mb-1">
+            <p className="text-gray-800 text-sm font-medium mb-1">
               Experiment running — 4 phases in progress
             </p>
-            <p className="text-gray-400 text-xs">
+            <p className="text-gray-800 text-xs">
               Phase 1: Generate code — Phase 2: Scan vulnerabilities —
               Phase 3: Fix with closed loop — Phase 4: Rescan to verify
             </p>
@@ -145,25 +145,25 @@ function ClosedLoopImpact() {
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm">Quality Score</span>
+                  <span className="text-gray-800 text-sm">Quality Score</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.quality_score}/10
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm">Vulnerabilities</span>
+                  <span className="text-gray-800 text-sm">Vulnerabilities</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.vulnerability_count} found
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500 text-sm">Production Ready</span>
+                  <span className="text-gray-800 text-sm">Production Ready</span>
                   <span className="font-bold text-red-500">
                     {result.without_closed_loop.production_ready}
                   </span>
                 </div>
                 <div className="py-2">
-                  <span className="text-gray-500 text-sm block mb-1">Issues Found</span>
+                  <span className="text-gray-800 text-sm block mb-1">Issues Found</span>
                   <span className="text-red-600 text-xs">
                     {result.without_closed_loop.issues}
                   </span>
@@ -178,25 +178,25 @@ function ClosedLoopImpact() {
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400 text-sm">Quality Score</span>
+                  <span className="text-gray-800 text-sm">Quality Score</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.quality_score}/10
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400 text-sm">Vulnerabilities</span>
+                  <span className="text-gray-800 text-sm">Vulnerabilities</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.vulnerability_count} remaining
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400 text-sm">Production Ready</span>
+                  <span className="text-gray-800 text-sm">Production Ready</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.production_ready}
                   </span>
                 </div>
                 <div className="py-2">
-                  <span className="text-gray-400 text-sm block mb-1">Remaining Issues</span>
+                  <span className="text-gray-800 text-sm block mb-1">Remaining Issues</span>
                   <span className="text-green-400 text-xs">
                     {result.with_closed_loop.issues}
                   </span>
@@ -215,7 +215,7 @@ function ClosedLoopImpact() {
                   className={`px-3 py-1 rounded-lg text-sm border transition ${
                     activeCode === "before"
                       ? "bg-black text-white border-black"
-                      : "bg-white text-gray-500 border-gray-200"
+                      : "bg-white text-gray-800 border-gray-200"
                   }`}
                 >
                   Before (Vulnerable)
@@ -225,14 +225,14 @@ function ClosedLoopImpact() {
                   className={`px-3 py-1 rounded-lg text-sm border transition ${
                     activeCode === "after"
                       ? "bg-black text-white border-black"
-                      : "bg-white text-gray-500 border-gray-200"
+                      : "bg-white text-gray-800 border-gray-200"
                   }`}
                 >
                   After (Fixed)
                 </button>
               </div>
             </div>
-            <pre className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-700 overflow-x-auto whitespace-pre-wrap">
+            <pre className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-800 overflow-x-auto whitespace-pre-wrap">
               {activeCode === "before"
                 ? result.without_closed_loop.generated_code
                 : result.with_closed_loop.fixed_code}
@@ -242,7 +242,7 @@ function ClosedLoopImpact() {
           {/* Conclusion */}
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h3 className="font-bold mb-3">Research Conclusion</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className="text-gray-800 text-sm leading-relaxed">
               This live experiment demonstrates that AI-generated code contains
               security vulnerabilities that are invisible without automated scanning.
               The closed loop architecture in DevSentinel Pro automatically detects

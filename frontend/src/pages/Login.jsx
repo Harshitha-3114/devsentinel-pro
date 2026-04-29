@@ -9,7 +9,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="text-center">
         <h1 className="text-4xl font-bold text-black mb-2">DevSentinel Pro</h1>
-        <p className="text-gray-400 mb-10 text-lg">AI-Powered DevSecOps Platform</p>
+        <p className="text-gray-800 mb-10 text-lg">AI-Powered DevSecOps Platform</p>
         <button
           onClick={handleLogin}
           className="bg-black text-white font-semibold px-8 py-3 rounded-full hover:bg-gray-800 transition flex items-center gap-3 mx-auto border border-black"

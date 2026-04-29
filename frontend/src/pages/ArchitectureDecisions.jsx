@@ -163,10 +163,10 @@ class AgentState(TypedDict):
     <div className="text-black">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Architecture Decision Records</h1>
-        <p className="text-gray-500 text-lg">
+        <p className="text-gray-800 text-lg">
           Every technical decision — what was considered, what was rejected, and why
         </p>
-        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-600">
+        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-800">
           📋 {decisions.length} decisions documented with evidence
         </div>
       </div>
@@ -184,7 +184,7 @@ class AgentState(TypedDict):
                 </span>
                 <h3 className="font-bold text-lg">{adr.decision}</h3>
               </div>
-              <span className="text-gray-400 text-xl">
+              <span className="text-gray-800 text-xl">
                 {expanded === i ? "↑" : "↓"}
               </span>
             </button>
@@ -192,12 +192,12 @@ class AgentState(TypedDict):
             {expanded === i && (
               <div className="px-6 pb-6 border-t border-gray-100">
                 <div className="mt-4 mb-6">
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-800 text-sm">
                     <strong>Context:</strong> {adr.context}
                   </p>
                 </div>
 
-                <h4 className="font-bold mb-3 text-sm text-gray-500 uppercase tracking-wider">
+                <h4 className="font-bold mb-3 text-sm text-gray-800 uppercase tracking-wider">
                   Options Evaluated
                 </h4>
                 <div className="space-y-3 mb-6">
@@ -215,7 +215,7 @@ class AgentState(TypedDict):
                         <span className={`text-xs px-3 py-1 rounded-full font-medium ${
                           opt.verdict === "Chosen"
                             ? "bg-black text-white"
-                            : "bg-gray-100 text-gray-600"
+                            : "bg-gray-100 text-gray-800"
                         }`}>
                           {opt.verdict === "Chosen" ? "✅ Chosen" : "❌ Rejected"}
                         </span>
@@ -223,20 +223,20 @@ class AgentState(TypedDict):
 
                       <div className="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                          <p className="text-xs text-gray-400 mb-1">Pros</p>
+                          <p className="text-xs text-gray-800 mb-1">Pros</p>
                           <ul className="space-y-1">
                             {opt.pros.map((pro, k) => (
-                              <li key={k} className="text-xs text-gray-600 flex items-start gap-1">
+                              <li key={k} className="text-xs text-gray-800 flex items-start gap-1">
                                 <span className="text-green-500 mt-0.5">+</span> {pro}
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-xs text-gray-400 mb-1">Cons</p>
+                          <p className="text-xs text-gray-800 mb-1">Cons</p>
                           <ul className="space-y-1">
                             {opt.cons.map((con, k) => (
-                              <li key={k} className="text-xs text-gray-600 flex items-start gap-1">
+                              <li key={k} className="text-xs text-gray-800 flex items-start gap-1">
                                 <span className="text-red-500 mt-0.5">−</span> {con}
                               </li>
                             ))}
@@ -247,7 +247,7 @@ class AgentState(TypedDict):
                       <div className={`text-xs px-3 py-2 rounded-lg ${
                         opt.verdict === "Chosen"
                           ? "bg-black text-white"
-                          : "bg-gray-100 text-gray-600"
+                          : "bg-gray-100 text-gray-800"
                       }`}>
                         <strong>Verdict:</strong> {opt.verdict_reason}
                       </div>
@@ -255,10 +255,10 @@ class AgentState(TypedDict):
                   ))}
                 </div>
 
-                <h4 className="font-bold mb-3 text-sm text-gray-500 uppercase tracking-wider">
+                <h4 className="font-bold mb-3 text-sm text-gray-800 uppercase tracking-wider">
                   Code Evidence
                 </h4>
-                <pre className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-700 overflow-x-auto whitespace-pre-wrap mb-6 font-mono">
+                <pre className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-800 overflow-x-auto whitespace-pre-wrap mb-6 font-mono">
                   {adr.code_evidence}
                 </pre>
 

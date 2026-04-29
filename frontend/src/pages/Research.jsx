@@ -59,10 +59,10 @@ password = "admin123"`)
     <div className="text-black">
       <div className="mb-8">
         <h1 className="text-4xl font-bold mb-2">Research and Insights</h1>
-        <p className="text-gray-500 text-lg">
+        <p className="text-gray-800 text-lg">
           Live experiments comparing LLM models and prompting strategies
         </p>
-        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-600">
+        <div className="mt-3 inline-flex items-center gap-2 bg-gray-100 border border-gray-200 px-3 py-1 rounded-full text-sm text-gray-800">
           🔬 Original research conducted as part of DevSentinel Pro
         </div>
       </div>
@@ -76,7 +76,7 @@ password = "admin123"`)
             className={`px-4 py-2 rounded-lg font-medium transition border ${
               activeSection === tab.id
                 ? "bg-black text-white border-black"
-                : "bg-white text-gray-500 border-gray-200 hover:border-black"
+                : "bg-white text-gray-800 border-gray-200 hover:border-black"
             }`}
           >
             {tab.label}
@@ -86,7 +86,7 @@ password = "admin123"`)
 
       {/* Shared Code Input */}
       <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-4xl mb-8">
-        <label className="text-gray-500 text-sm mb-2 block font-medium">
+        <label className="text-gray-800 text-sm mb-2 block font-medium">
           Test Code — used across all experiments
         </label>
         <textarea
@@ -102,7 +102,7 @@ password = "admin123"`)
         <div className="max-w-4xl">
           <div className="mb-6">
             <h2 className="text-2xl font-bold mb-2">LLM Model Comparison</h2>
-            <p className="text-gray-500">
+            <p className="text-gray-800">
               Research Question: Which LLM gives the best code review quality vs response speed?
             </p>
           </div>
@@ -117,12 +117,12 @@ password = "admin123"`)
                     <span className={`text-xs px-2 py-0.5 rounded-full ${
                       m.tag === "Chosen Model"
                         ? "bg-black text-white"
-                        : "bg-gray-100 text-gray-600"
+                        : "bg-gray-100 text-gray-800"
                     }`}>
                       {m.tag}
                     </span>
                   </div>
-                  <p className="text-gray-400 text-xs">{m.description}</p>
+                  <p className="text-gray-800 text-xs">{m.description}</p>
                 </div>
               ))}
             </div>
@@ -134,7 +134,7 @@ password = "admin123"`)
               {loadingBenchmark ? "Running Benchmark..." : "Run Live Benchmark"}
             </button>
             {loadingBenchmark && (
-              <p className="text-gray-400 text-sm mt-2">
+              <p className="text-gray-800 text-sm mt-2">
                 Sending same code to 3 models simultaneously...
               </p>
             )}
@@ -171,12 +171,12 @@ password = "admin123"`)
                     <div className="text-2xl font-bold text-black mb-1">
                       {result.response_time}s
                     </div>
-                    <div className="text-gray-400 text-xs mb-3">Response time</div>
-                    <div className="text-xs text-gray-500 mb-1">
+                    <div className="text-gray-800 text-xs mb-3">Response time</div>
+                    <div className="text-xs text-gray-800 mb-1">
                       Tokens: {result.tokens_used}
                     </div>
                     <div className="border-t border-gray-100 pt-3 mt-3">
-                      <p className="text-xs text-gray-600 leading-relaxed">
+                      <p className="text-xs text-gray-800 leading-relaxed">
                         {result.response?.substring(0, 150)}...
                       </p>
                     </div>
@@ -189,10 +189,10 @@ password = "admin123"`)
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-2 text-gray-500">Model</th>
-                      <th className="text-left py-2 text-gray-500">Response Time</th>
-                      <th className="text-left py-2 text-gray-500">Tokens Used</th>
-                      <th className="text-left py-2 text-gray-500">Score</th>
+                      <th className="text-left py-2 text-gray-800">Model</th>
+                      <th className="text-left py-2 text-gray-800">Response Time</th>
+                      <th className="text-left py-2 text-gray-800">Tokens Used</th>
+                      <th className="text-left py-2 text-gray-800">Score</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -217,7 +217,7 @@ password = "admin123"`)
         <div className="max-w-4xl">
           <div className="mb-6">
             <h2 className="text-2xl font-bold mb-2">Prompt Engineering Analysis</h2>
-            <p className="text-gray-500">
+            <p className="text-gray-800">
               Research Question: How does prompt structure affect output quality?
             </p>
           </div>
@@ -233,9 +233,9 @@ password = "admin123"`)
                 <div key={i} className="flex items-center justify-between border border-gray-200 rounded-lg p-3">
                   <div>
                     <span className="font-medium text-sm">{p.name} Prompting</span>
-                    <p className="text-gray-400 text-xs">{p.desc}</p>
+                    <p className="text-gray-800 text-xs">{p.desc}</p>
                   </div>
-                  <span className={`text-sm font-bold ${i === 2 ? "text-black" : "text-gray-400"}`}>
+                  <span className={`text-sm font-bold ${i === 2 ? "text-black" : "text-gray-800"}`}>
                     Expected: {p.score}
                   </span>
                 </div>
@@ -249,7 +249,7 @@ password = "admin123"`)
               {loadingPrompt ? "Running Comparison..." : "Run Live Comparison"}
             </button>
             {loadingPrompt && (
-              <p className="text-gray-400 text-sm mt-2">
+              <p className="text-gray-800 text-sm mt-2">
                 Testing 3 prompting strategies on same code...
               </p>
             )}
@@ -278,11 +278,11 @@ password = "admin123"`)
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="font-bold">{result.prompt_name}</h3>
-                        <p className="text-gray-400 text-sm">{result.description}</p>
+                        <p className="text-gray-800 text-sm">{result.description}</p>
                       </div>
                       <div className="text-right">
                         <div className="text-2xl font-bold">{result.quality_score}/10</div>
-                        <div className="text-gray-400 text-xs">Quality Score</div>
+                        <div className="text-gray-800 text-xs">Quality Score</div>
                       </div>
                     </div>
 
@@ -294,16 +294,16 @@ password = "admin123"`)
                       ].map((m, j) => (
                         <div key={j} className="flex items-center gap-1 text-xs">
                           <span>{m.val ? "✅" : "❌"}</span>
-                          <span className="text-gray-500">{m.label}</span>
+                          <span className="text-gray-800">{m.label}</span>
                         </div>
                       ))}
-                      <div className="text-xs text-gray-400">
+                      <div className="text-xs text-gray-800">
                         {result.metrics?.word_count} words
                       </div>
                     </div>
 
                     <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                      <p className="text-xs text-gray-600 leading-relaxed font-mono">
+                      <p className="text-xs text-gray-800 leading-relaxed font-mono">
                         {result.response?.substring(0, 300)}...
                       </p>
                     </div>
