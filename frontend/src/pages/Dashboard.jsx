@@ -66,7 +66,7 @@ function FeatureCard({ feature }) {
         <Icon size={18} className="text-gray-900 group-hover:text-white transition" />
       </div>
       <h3 className="text-black font-bold text-lg mb-2">{feature.title}</h3>
-      <p className="text-gray-800 text-sm leading-relaxed">{feature.description}</p>
+      <p className="text-gray-900 text-sm leading-relaxed">{feature.description}</p>
       <div className="mt-4 text-black text-sm font-medium flex items-center gap-1">
         Open <span>→</span>
       </div>
@@ -82,7 +82,7 @@ function Dashboard() {
         <h1 className="text-4xl font-bold mb-2 text-black">
           Welcome to DevSentinel Pro
         </h1>
-        <p className="text-gray-800 text-lg">
+        <p className="text-gray-900 text-lg">
           AI-Powered Closed-Loop DevSecOps Platform
         </p>
       </div>
@@ -96,9 +96,9 @@ function Dashboard() {
           { label: "Status", value: "Online", icon: <Circle size={20} className="text-green-500 fill-green-500" /> },
         ].map(stat => (
           <div key={stat.label} className="bg-white border border-gray-200 rounded-xl p-4">
-            <div className="text-gray-800 mb-2">{stat.icon}</div>
+            <div className="text-gray-900 mb-2">{stat.icon}</div>
             <div className="text-2xl font-bold text-black">{stat.value}</div>
-            <div className="text-gray-800 text-sm">{stat.label}</div>
+            <div className="text-gray-900 text-sm">{stat.label}</div>
           </div>
         ))}
       </div>
