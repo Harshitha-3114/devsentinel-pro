@@ -190,7 +190,7 @@ function ClosedLoopImpact() {
                   </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-800 text-sm">Production Ready</span>
+                  <span className="text-gray-300 text-sm">Production Ready</span>
                   <span className="font-bold text-green-400">
                     {result.with_closed_loop.production_ready}
                   </span>
