@@ -116,47 +116,6 @@ Measured security improvement with and without closed loop:
 
 ---
 
-## Project Structure
-devsentinel-pro/
-├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── PRSummary.jsx
-│   │   │   ├── CodeReview.jsx
-│   │   │   ├── VulnerabilityScanner.jsx
-│   │   │   ├── TestGenerator.jsx
-│   │   │   ├── ArchitectureSuggester.jsx
-│   │   │   ├── AgentPipeline.jsx
-│   │   │   ├── Research.jsx
-│   │   │   ├── ClosedLoopImpact.jsx
-│   │   │   └── ArchitectureDecisions.jsx
-│   │   ├── components/
-│   │   │   ├── Sidebar.jsx
-│   │   │   └── Layout.jsx
-│   │   ├── config.js
-│   │   └── App.jsx
-│   ├── package.json
-│   └── vite.config.js
-│
-├── backend/
-│   ├── main.py
-│   ├── requirements.txt
-│   ├── routers/
-│   │   ├── auth.py
-│   │   ├── pr_summary.py
-│   │   ├── code_review.py
-│   │   ├── vulnerability_scanner.py
-│   │   ├── test_generator.py
-│   │   ├── architecture_suggester.py
-│   │   ├── agent_pipeline.py
-│   │   └── research.py
-│   └── agents/
-│       └── dev_team.py
-│
-└── README.md
----
 
 ## Local Setup
 
